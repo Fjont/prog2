@@ -100,10 +100,10 @@ def sphere_volume_parallel2(n,d,np=10):
         results = [ex.submit(sphere_volume,int(n/10),d) for _ in range(np)]
     end = pc()
     
-    #print(f"Process ex4, took {round(end-start, 4)}seconds")
+    print(f"Process ex4, took {round(end-start, 4)}seconds")
     
     #return mean([val.result() for val in results])
-    return round(end-start, 4)
+    return mean([val.result() for val in results])
     
 def main():
     #Ex1
@@ -140,9 +140,8 @@ def main():
     sphere_volume(n,d)
     stop = pc()
     print(f"Ex4: Sequential time of {d} and {n}: {stop-start}")
-    tid=sphere_volume_parallel2(n,d)
-    print("What is parallel time?",tid)
-
+    print("What is parallel time?")
+    sphere_volume_parallel2(n,d)
     
     
 
